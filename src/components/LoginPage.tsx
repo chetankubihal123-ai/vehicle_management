@@ -42,7 +42,7 @@ export default function LoginPage() {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center p-6 overflow-hidden">
-      {/* Holi Color Blobs Background */}
+      {/* Background Color Blobs */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-10 left-20 w-72 h-72 bg-pink-400 rounded-full blur-3xl opacity-50 animate-pulse"></div>
         <div className="absolute top-40 right-10 w-96 h-96 bg-yellow-300 rounded-full blur-3xl opacity-40 animate-pulse"></div>
@@ -50,43 +50,31 @@ export default function LoginPage() {
         <div className="absolute bottom-32 right-20 w-72 h-72 bg-blue-400 rounded-full blur-3xl opacity-50 animate-pulse"></div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 50, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white/80 backdrop-blur-lg shadow-2xl rounded-3xl p-6"
-      >
-        {/* Left Side - Branding */}
+      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left Column - Branding & Demo */}
         <motion.div
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="flex flex-col justify-center space-y-6"
+          className="flex flex-col justify-center space-y-6 bg-white/80 backdrop-blur-lg p-8 rounded-3xl shadow-xl"
         >
-          <div className="text-center lg:text-left">
-            <motion.div
-              initial={{ scale: 0.7 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex items-center justify-center lg:justify-start space-x-3 mb-6"
-            >
-              <div className="bg-gradient-to-r from-pink-500 via-yellow-400 to-green-500 p-4 rounded-2xl shadow-lg animate-pulse">
-                <Car className="h-9 w-9 text-white" />
-              </div>
-              <h1 className="text-4xl font-extrabold bg-gradient-to-r from-pink-600 via-orange-500 to-purple-600 bg-clip-text text-transparent animate-gradient">
-                VehicleTracker
-              </h1>
-            </motion.div>
-            <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
-              Manage Your Fleet, Drive Smarter 🚗
-            </h2>
-            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              Track trips, manage expenses, monitor performance, and stay ahead
-              with smart maintenance.
-            </p>
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="bg-gradient-to-r from-pink-500 via-yellow-400 to-green-500 p-4 rounded-2xl shadow-lg animate-pulse">
+              <Car className="h-9 w-9 text-white" />
+            </div>
+            <h1 className="text-4xl font-extrabold bg-gradient-to-r from-pink-600 via-orange-500 to-purple-600 bg-clip-text text-transparent animate-gradient">
+              VehicleTracker
+            </h1>
           </div>
 
-          {/* Demo Credentials */}
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-2">
+            Manage Your Fleet, Drive Smarter 🚗
+          </h2>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            Track trips, manage expenses, monitor performance, and stay ahead
+            with smart maintenance.
+          </p>
+
           <div className="bg-white/90 rounded-2xl shadow-lg p-6 border border-gray-100">
             <h3 className="text-lg font-bold text-gray-900 mb-4">
               🌈 Try Demo Accounts
@@ -120,14 +108,16 @@ export default function LoginPage() {
           </div>
         </motion.div>
 
-        {/* Right Side - Form */}
-        <motion.div
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col justify-center"
-        >
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+        {/* Right Column - Flip Card */}
+        <div className="relative h-[600px] perspective">
+          <motion.div
+            key={isLogin ? "login" : "signup"}
+            initial={{ rotateY: isLogin ? -90 : 90, opacity: 0 }}
+            animate={{ rotateY: 0, opacity: 1 }}
+            exit={{ rotateY: isLogin ? 90 : -90, opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0 bg-white rounded-3xl shadow-xl p-8 border border-gray-100 backface-hidden"
+          >
             <div className="text-center mb-8">
               <h3 className="text-3xl font-extrabold bg-gradient-to-r from-blue-600 via-pink-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
                 {isLogin ? "Welcome Back 🎉" : "Join the Family 🌟"}
@@ -220,7 +210,10 @@ export default function LoginPage() {
               <motion.button
                 type="submit"
                 disabled={loading}
-                whileHover={{ scale: 1.05, boxShadow: "0px 0px 15px rgba(0,0,0,0.2)" }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0px 0px 15px rgba(0,0,0,0.2)",
+                }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full bg-gradient-to-r from-pink-500 via-orange-500 to-purple-600 text-white py-3 rounded-lg font-bold transition-all duration-200 disabled:opacity-50 shadow-md"
               >
@@ -242,9 +235,9 @@ export default function LoginPage() {
                   : "🚀 Already have an account? Sign in"}
               </button>
             </div>
-          </div>
-        </motion.div>
-      </motion.div>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
