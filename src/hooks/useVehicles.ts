@@ -112,7 +112,7 @@ export function useVehicles() {
       } else if (user.role === 'driver') {
         userVehicles = mockVehicles.filter(v => v.assigned_driver_id === user.id);
         userTrips = mockTrips.filter(t => t.driver_id === user.id);
-        userExpenses = mockExpenses.filter(e => t.driver_id === user.id);
+        userExpenses = mockExpenses.filter(e => e.user_id === user.id);
       }
 
       setVehicles(userVehicles);
