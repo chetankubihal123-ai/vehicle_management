@@ -190,7 +190,7 @@ export default function LoginPage() {
                   }
                   className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                 >
-                  <option value="personal">Personal User</option>
+                  <option value="personal">Chetan K</option>
                   <option value="fleet_owner">Fleet Owner</option>
                   <option value="driver">Driver</option>
                 </select>
