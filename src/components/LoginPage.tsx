@@ -192,7 +192,7 @@ export default function LoginPage() {
                 >
                   <option value="personal">Personal User</option>
                   <option value="fleet_owner">Fleet Owner</option>
-                  <option value="driver">Driver</option>
+                  <option value="driver">Chetan</option>
                 </select>
               </div>
             )}
