@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Layout from './components/Layout';
 import LoginPage from './components/LoginPage';
@@ -8,9 +8,9 @@ import TripTracking from './components/TripTracking';
 import ExpenseManagement from './components/ExpenseManagement';
 import ServiceReminders from './components/ServiceReminders';
 
-function AppContent() {
+function AppContent(): JSX.Element {
   const { user, loading } = useAuth();
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState<string>('dashboard');
 
   if (loading) {
     return (
@@ -27,7 +27,7 @@ function AppContent() {
     return <LoginPage />;
   }
 
-  const renderContent = () => {
+  const renderContent = (): JSX.Element => {
     switch (activeTab) {
       case 'dashboard':
         return <Dashboard />;
@@ -51,7 +51,7 @@ function AppContent() {
   );
 }
 
-function App() {
+function App(): JSX.Element {
   return (
     <AuthProvider>
       <AppContent />
